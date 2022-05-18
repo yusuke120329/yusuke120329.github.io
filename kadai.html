@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>sample1</title>
+
+  <!-- three.jsを読み込む(ローカル) -->
+  <!-- <script src="./three.js"></script> -->
+  <!-- three.jsを読み込む(CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
+
+</head>
+<body>
+ <script>
+  var init = function() {
+
+    var width = 800,
+        height = 600;
+  
+    // レンダラーを作成
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);
+    document.body.appendChild(renderer.domElement);
+  
+    // シーンを作成
+    var scene = new THREE.Scene();
+
+    // カメラを作成
+    var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    camera.position.set(1, 1, 5);  //位置を指定
+    camera.lookAt(0, 0, 0); //見つめる方向
+
+    
+    // 平行光源
+    var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+    directionalLight1.position.set(5, 1, 5);   //位置を指定
+    scene.add(directionalLight1);     // シーンに追加
+     // 平行光源
+    var directionalLight2 = new THREE.DirectionalLight(0x666666);
+    directionalLight2.position.set(-5, 1, 1);   //位置を指定
+    scene.add(directionalLight2);     // シーンに追加
+      
+    // helper
+    //const gridHelper = new THREE.GridHelper(2,10); // size, step
+    //scene.add(gridHelper);
+    const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
+    scene.add(axisHelper);
+
+    // 箱を作成
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshStandardMaterial({ color: 0x7FFFD4});
+    var box = new THREE.Mesh(geometry, material);
+    box.position.set(1.5,0,0); //位置を指定
+    scene.add(box);   // シーンに追加
+
+    //角すい〜円すい
+    var coneGeometry = new THREE.ConeGeometry( 0.5, 1, 5 );
+    var coneMaterial = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+    var cone = new THREE.Mesh(coneGeometry, coneMaterial);
+    cone.position.set(-1.5,0,0); //位置を指定
+    scene.add(cone);   // シーンに追加
+
+    // ドーナツを作成
+    var TorusGeometry = new THREE.TorusGeometry(3, 1, 16, 100);
+    var TorusMaterial = new THREE.MeshLambertMaterial({color: 0x6699FF,wireframe: true});
+    var Torus = new THREE.Mesh(TorusGeometry, TorusMaterial);
+    Torus.position.set(0,0,0);
+    scene.add(Torus);
+
+    //球を作成
+    var sphereGeometry = new THREE.SphereGeometry( 3, 32, 32 );
+    var sphereMaterial = new THREE.MeshStandardMaterial( {color: 0xF5D08A,wireframe: true} );
+    var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+    sphere.position.set( -1, -0.5, -5 );
+    scene.add( sphere );
+
+    var sphereGeometry2 = new THREE.SphereGeometry( 2, 32, 32 );
+    var sphereMaterial2 = new THREE.MeshStandardMaterial( {color: 0xFF5675} );
+    var sphere2 = new THREE.Mesh( sphereGeometry2, sphereMaterial2 );
+    sphere2.position.set( -11, 3, -15 );
+    scene.add( sphere2 );
+
+
+    //なんかクネクネしてるやつ
+    var torusKnotGeometry = new THREE.TorusKnotGeometry( 1.5, 0.3, 20, 6, 5, 7 );
+    var torusKnotMaterial = new THREE. MeshStandardMaterial( { color: 0x8c008c, wireframe: true } );
+    var torusKnot = new THREE.Mesh( torusKnotGeometry, torusKnotMaterial );
+    torusKnot.position.set( 3.8, 2.6, -15 );
+    scene.add( torusKnot );
+
+    var torusKnotGeometry2 = new THREE.TorusKnotGeometry( 1.5, 0.3, 20, 6, 11, 21 );
+    var torusKnotMaterial2 = new THREE. MeshToonMaterial( { color: 0x3CFBFF, wireframe: true } );
+    var torusKnot2 = new THREE.Mesh( torusKnotGeometry2, torusKnotMaterial2 );
+    torusKnot2.position.set( 3.8, -8, -15 );
+    scene.add( torusKnot2 );
+
+    //円柱
+    var cylinderGeometry = new THREE.CylinderGeometry( 3.5, 3.5, 1, 32 );
+    var cylinderMaterial = new THREE.MeshToonMaterial( {color: 0x57E9E1, wireframe: true} );
+    var cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
+    cylinder.position.set( -11, -7, -15 );
+    scene.add( cylinder );
+  
+    // 初回実行
+    var update = function() {
+      requestAnimationFrame(update);
+  
+      // 箱を回転させる
+      box.rotation.x += 0.01;
+      box.rotation.y += 0.01;
+      // 三角錐を回転させる
+      cone.rotation.x += 0.01;
+      cone.rotation.y += 0.01;
+      // 円環を回転させる
+      Torus.rotation.x += 0.01;
+      Torus.rotation.y -= 0.01;
+      // ドーナツを回転させる
+      sphere.rotation.y += 0.01;
+      // クネクネを回転させる
+      torusKnot.rotation.x += 0.01;
+      torusKnot2.rotation.x += 0.01;
+      // 円柱を回転させる
+      cylinder.rotation.x += 0.01;
+  
+      renderer.render(scene, camera);
+    };
+    update();
+  }
+  window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
