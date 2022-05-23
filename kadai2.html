@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+  </head>
+<body>
+ <script>
+      // ページの読み込みを待つ
+      window.addEventListener('DOMContentLoaded', init);
+
+      function init() {
+        // サイズを指定
+        const width = 1500;
+        const height = 700;
+
+        // レンダラーを作成
+        var renderer = new THREE.WebGLRenderer();
+        document.body.appendChild(renderer.domElement);
+        renderer.setSize(width, height);
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+        // カメラの初期座標を設定
+        camera.position.set(0, 0, 10);
+
+        // カメラコントローラーを作成
+        const controls = new THREE.OrbitControls(camera, document.body); 
+        
+        // 平行光源1
+        var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+        directionalLight1.position.set(10, 10, 10);
+        // シーンに追加
+        scene.add(directionalLight1);
+        // 平行光源2
+        var directionalLight2 = new THREE.DirectionalLight(0x888888);
+        directionalLight2.position.set(-10, -10, 10);
+        // シーンに追加
+        scene.add(directionalLight2);
+
+        // helper
+        const gridHelper = new THREE.GridHelper(2,10); // size, step
+        scene.add(gridHelper);
+        const axisHelper = new THREE.AxisHelper(5); //軸の長さ　X：赤、Y：緑、z：青
+        scene.add(axisHelper);
+
+        // 平面を作成
+        var planeGeometry = new THREE.PlaneGeometry(10,10,10,10); //縦、横、分割数、分割数
+        var planeMaterial = new THREE.MeshBasicMaterial({color: 0x8c8c8c});
+        var plane = new THREE.Mesh(planeGeometry,planeMaterial);
+        plane.rotation.set( -Math.PI/2, 0, 0 );
+        plane.position.set(0,0,0);
+        scene.add(plane);
+
+        // いろいろなマテリアルの実験
+        //var material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        //var material = new THREE.MeshNormalMaterial({ color: 0x000000 });
+        //var material = new THREE.MeshLambertMaterial({ color: 0x0000ff });
+        //var material = new THREE.MeshPhongMaterial({ color: 0x0000ff, specular:0xffff00, shininess:4 });
+        var material = new THREE.MeshPhongMaterial({ color: 0x0000ff, emissive: 0xffff00, emissiveIntensity: 2 });
+        //var material = new THREE.MeshToonMaterial({ color: 0x005555 });
+        //var material = new THREE.MeshStandardMaterial({ color: 0x0005555 });
+
+        //窓
+        var planeGeometry2 = new THREE.PlaneGeometry(1,2,10,10,); //縦、横、分割数、分割数
+        var planeMaterial2 = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var plane2 = new THREE.Mesh(planeGeometry2,planeMaterial2);
+        plane2.rotation.set( -Math.PI/2, 1.5, 0 );
+        plane2.position.set(0,2,0);
+        //scene.add(plane2);  
+
+        //タイヤの上の箱１
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshPhongMaterial({ color: 0x282828});
+        var box1 = new THREE.Mesh(geometry, material);
+        box1.position.set(0,1.5,0);
+        box1.scale.set(7,0.3,3.5); 
+        scene.add(box1);
+        
+        //前の箱２
+        var box2 = new THREE.Mesh(geometry, material);
+        box2.position.set(3,1.2,0);
+        box2.scale.set(0.8,0.5,3.5); 
+        scene.add(box2);
+        
+        //前の箱3
+        var box3 = new THREE.Mesh(geometry, material);
+        box3.position.set(2.9,1,0);
+        box3.scale.set(0.6,0.5,3.5); 
+        scene.add(box3);
+
+        //後ろの箱4
+        var box4 = new THREE.Mesh(geometry, material);
+        box4.position.set(-3,1.2,0);
+        box4.scale.set(1,0.5,3.5); 
+        scene.add(box4);
+
+        //後ろの下の箱5
+        var box5 = new THREE.Mesh(geometry, material);
+        box5.position.set(-2.8,1,0);
+        box5.scale.set(0.6,0.5,3.5); 
+        scene.add(box5);
+
+        //タイヤに挟まっている横の箱6
+        var box6 = new THREE.Mesh(geometry, material);
+        box6.position.set(0,1.2,0);
+        box6.scale.set(2,0.9,3.5); 
+        scene.add(box6);
+
+        //タイヤに挟まっている縦の箱7
+        var box7 = new THREE.Mesh(geometry, material);
+        box7.position.set(0,1.2,0);
+        box7.scale.set(5.3,0.9,1.5); 
+        scene.add(box7);
+
+        //タイヤ1
+        var Tire1Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+        var Tire1Material = new THREE.MeshLambertMaterial({color: 0x282828});
+        var Tire1 = new THREE.Mesh(Tire1Geometry, Tire1Material);
+        Tire1.position.set(1.8,0.7,1.3);
+        Tire1.scale.z = 2;
+        scene.add(Tire1);
+
+        //タイヤ1のホイール
+        var Wheel1Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
+        var Wheel1Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
+        var Wheel1 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
+        Wheel1.position.set( 1.8, 0.7, 1.3 );
+        Wheel1.rotation.x = 1.5;
+        Wheel1.scale.y = 0.5;
+        scene.add( Wheel1 );
+
+        //タイヤ2
+        var Tire2Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+        var Tire2Material = new THREE.MeshLambertMaterial({color: 0x282828});
+        var Tire2 = new THREE.Mesh(Tire2Geometry, Tire2Material);
+        Tire2.position.set(-1.8,0.7,1.3);
+        Tire2.scale.z = 2;
+        scene.add(Tire2);
+
+        //タイヤ2のホイール
+        var Wheel2Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
+        var Wheel2Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
+        var Wheel2 = new THREE.Mesh( Wheel2Geometry, Wheel2Material );
+        Wheel2.position.set( -1.8, 0.7, 1.3 );
+        Wheel2.rotation.x = 1.5;
+        Wheel2.scale.y = 0.5;
+        scene.add( Wheel2 );
+
+        //タイヤ3
+        var Tire3Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+        var Tire3Material = new THREE.MeshLambertMaterial({color: 0x282828});
+        var Tire3 = new THREE.Mesh(Tire3Geometry, Tire3Material);
+        Tire3.position.set(1.8,0.7,-1.3);
+        Tire3.scale.z = 2;
+        scene.add(Tire3);
+
+        //タイヤ3のホイール
+        var Wheel3Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
+        var Wheel3Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
+        var Wheel3 = new THREE.Mesh( Wheel3Geometry, Wheel3Material );
+        Wheel3.position.set( 1.8, 0.7, -1.3 );
+        Wheel3.rotation.x = 1.5;
+        Wheel3.scale.y = 0.5;
+        scene.add( Wheel3 );
+
+        //タイヤ4
+        var Tire4Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+        var Tire4Material = new THREE.MeshLambertMaterial({color: 0x282828});
+        var Tire4 = new THREE.Mesh(Tire4Geometry, Tire4Material);
+        Tire4.position.set(-1.8,0.7,-1.3);
+        Tire4.scale.z = 2;
+        scene.add(Tire4);
+
+        //タイヤ4のホイール
+        var Wheel4Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
+        var Wheel4Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
+        var Wheel4 = new THREE.Mesh( Wheel4Geometry, Wheel4Material );
+        Wheel4.position.set( -1.8, 0.7, -1.3 );
+        Wheel4.rotation.x = 1.5;
+        Wheel4.scale.y = 0.5;
+        scene.add( Wheel4 );
+        
+        
+
+
+        
+
+        update();
+
+        // 毎フレーム時に実行されるループイベントです
+        function update() {
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(update);
+        }
+      }
+    </script>
+</body>
+</html>
