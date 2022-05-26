@@ -68,7 +68,7 @@
 
         //タイヤの上の車体の箱１
         var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshPhongMaterial({ color: 0x282828});
+        var material = new THREE.MeshPhongMaterial({ color: 0x282828, specular: 0x666666, shininess: 80});
         var box1 = new THREE.Mesh(geometry, material);
         box1.position.set(0,1.5,0);
         box1.scale.set(7,0.3,3.5); 
@@ -152,7 +152,7 @@
         scene.add(box13);
         
         //後ろのランプの箱１4
-        var material4 = new THREE.MeshStandardMaterial({ color: 0xCD1039, roughness:0.8});
+        var material4 = new THREE.MeshPhongMaterial({ color: 0xCD1039, specular: 0x000011, shininess: 120});
         var box14 = new THREE.Mesh(geometry, material4);
         box14.position.set(-3.45,1.85,1.26);
         box14.scale.set(0.05,0.5,1); 
@@ -166,7 +166,7 @@
 
         //  前の窓１
         var WindowGeometry = new THREE.PlaneGeometry(0.93,3.2,10,10,); //縦、横、分割数、分割数
-        var WindowMaterial = new THREE.MeshStandardMaterial({color: 0x87F5F5, roughness:0.8});
+        var WindowMaterial = new THREE.MeshPhongMaterial({color: 0x87F5F5, specular: 0x000001, shininess: 150});
         var Window = new THREE.Mesh(WindowGeometry,WindowMaterial);
         Window.rotation.set( -Math.PI/2, 0.76, 0 );
         Window.position.set(0.64,2.52,0);
@@ -203,11 +203,6 @@
         Window6.rotation.y = 9.45;
         scene.add(Window6);
 
-
-        
-
-
-
         //タイヤ1
         var Tire1Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
         var Tire1Material = new THREE.MeshLambertMaterial({color: 0x282828});
@@ -218,7 +213,7 @@
 
         //タイヤ1のホイール
         var Wheel1Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
-        var Wheel1Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
+        var Wheel1Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4 , specular: 0x999999, shininess: 80} );
         var Wheel1 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
         Wheel1.position.set( 1.8, 0.7, 1.3 );
         Wheel1.rotation.x = 1.5;
@@ -226,60 +221,84 @@
         scene.add( Wheel1 );
 
         //タイヤ2
-        var Tire2Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
-        var Tire2Material = new THREE.MeshLambertMaterial({color: 0x282828});
-        var Tire2 = new THREE.Mesh(Tire2Geometry, Tire2Material);
+        var Tire2 = new THREE.Mesh(Tire1Geometry, Tire1Material);
         Tire2.position.set(-1.8,0.7,1.3);
         Tire2.scale.z = 2;
         scene.add(Tire2);
 
         //タイヤ2のホイール
-        var Wheel2Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
-        var Wheel2Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
-        var Wheel2 = new THREE.Mesh( Wheel2Geometry, Wheel2Material );
+        var Wheel2 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
         Wheel2.position.set( -1.8, 0.7, 1.3 );
         Wheel2.rotation.x = 1.5;
         Wheel2.scale.y = 0.5;
         scene.add( Wheel2 );
 
         //タイヤ3
-        var Tire3Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
-        var Tire3Material = new THREE.MeshLambertMaterial({color: 0x282828});
-        var Tire3 = new THREE.Mesh(Tire3Geometry, Tire3Material);
+        var Tire3 = new THREE.Mesh(Tire1Geometry, Tire1Material);
         Tire3.position.set(1.8,0.7,-1.3);
         Tire3.scale.z = 2;
         scene.add(Tire3);
 
         //タイヤ3のホイール
-        var Wheel3Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
-        var Wheel3Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
-        var Wheel3 = new THREE.Mesh( Wheel3Geometry, Wheel3Material );
+        var Wheel3 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
         Wheel3.position.set( 1.8, 0.7, -1.3 );
         Wheel3.rotation.x = 1.5;
         Wheel3.scale.y = 0.5;
         scene.add( Wheel3 );
 
         //タイヤ4
-        var Tire4Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
-        var Tire4Material = new THREE.MeshLambertMaterial({color: 0x282828});
-        var Tire4 = new THREE.Mesh(Tire4Geometry, Tire4Material);
+        var Tire4 = new THREE.Mesh(Tire1Geometry, Tire1Material);
         Tire4.position.set(-1.8,0.7,-1.3);
         Tire4.scale.z = 2;
         scene.add(Tire4);
 
         //タイヤ4のホイール
-        var Wheel4Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
-        var Wheel4Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4} );
-        var Wheel4 = new THREE.Mesh( Wheel4Geometry, Wheel4Material );
+        var Wheel4 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
         Wheel4.position.set( -1.8, 0.7, -1.3 );
         Wheel4.rotation.x = 1.5;
         Wheel4.scale.y = 0.5;
         scene.add( Wheel4 );
-        
-        
 
+        //車のオブジェクト
+        const car = new THREE.Group();
+        car.add(box1);
+        car.add(box2);
+        car.add(box3);
+        car.add(box4);
+        car.add(box5);
+        car.add(box6);
+        car.add(box7);
+        car.add(box8);
+        car.add(box9);
+        car.add(box10);
+        car.add(box11);
+        car.add(box12);
+        car.add(box13);
+        car.add(box14);
+        car.add(box15);
+        car.add(Window);
+        car.add(Window2);
+        car.add(Window3);
+        car.add(Window4);
+        car.add(Window5);
+        car.add(Window6);
+        car.add(Tire1);
+        car.add(Tire2);
+        car.add(Tire3);
+        car.add(Tire4);
+        car.add( Wheel1);
+        car.add( Wheel2);
+        car.add( Wheel3);
+        car.add( Wheel4);
+        car.position.set(0,0,0);//車グループの原点の位置
+        scene.add(car);
 
-        
+        //全体のオブジェクト
+        const all = new THREE.Group();
+        all.add(plane);//平面を追加
+        all.add(car); // 車を追加
+        all.position.set(0,0,0);//全体グループの原点の位置
+        scene.add(all); 
 
         update();
 
@@ -288,6 +307,9 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
+
+          // 車を回転させる
+          car.rotation.y += 0.005;
         }
       }
     </script>
