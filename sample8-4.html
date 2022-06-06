@@ -59,6 +59,9 @@
 
         // 森を作成
         for (let i = 0; i < 20; i++) {
+          var random = Math.floor(Math.random()*3) + 1;
+          var texture = textureLoader.load("img/treerandom.png");
+          const material = new THREE.SpriteMaterial({ map: texture,});
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
           sprite.position.x = 2 * (Math.random() - 0.5);
