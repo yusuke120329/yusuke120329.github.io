@@ -59,7 +59,7 @@
 
         const images = ['img/tree0.png','img/tree1.png','img/tree2.png','img/tree3.png'];
 
-        // 奥の森を作成
+        // 手前の森を作成
         for (let i = 0; i < 30; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
@@ -68,7 +68,7 @@
           // ランダムな座標に配置
           sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() + 0.5);
+          sprite.position.z = (Math.random() + 0.7);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
@@ -90,7 +90,7 @@
           scene.add(sprite);
         }
 
-        //手前の木
+        //奥の木
         for (let i = 0; i < 30; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
@@ -99,7 +99,7 @@
           // ランダムな座標に配置
           sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() - 0.5);
+          sprite.position.z = (Math.random() - 1);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
