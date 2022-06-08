@@ -102,7 +102,7 @@
         //手前側の道
         var textureLoader2 = new THREE.TextureLoader();  
         var texture2 = textureLoader2.load("grass.jpg");
-        var mat = new THREE.MeshPhongMaterial();
+        var mat = new THREE.MeshLambertMaterial();
         mat.map = texture2;
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var road = new THREE.Mesh(geometry, mat);
