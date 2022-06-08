@@ -91,10 +91,21 @@
         }
 
         //手前側の道
+        //var geometry = new THREE.BoxGeometry(1, 1, 1);
+       //var material = new THREE.MeshPhongMaterial({ color: 0x006400});
+        //var road = new THREE.Mesh(geometry, material);
+        //road.castShadow = true; //影ができる
+        //road.position.set(0,0,1.7);
+        //road.scale.set(3,0.1,2); 
+        //scene.add(road);
+
+        //手前側の道
+        var textureLoader2 = new THREE.TextureLoader();  
+        var texture2 = textureLoader2.load("grass.jpg");
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture2;
         var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshPhongMaterial({ color: 0x006400});
-        var road = new THREE.Mesh(geometry, material);
-        road.castShadow = true; //影ができる
+        var road = new THREE.Mesh(geometry, mat);
         road.position.set(0,0,1.7);
         road.scale.set(3,0.1,2); 
         scene.add(road);
