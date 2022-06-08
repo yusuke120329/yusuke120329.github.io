@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+  </head>
+<body>
+ <h1>森を作成</h1>
+ ループで２０本の気を作った<br>
+ <script>
+      // ページの読み込みを待つ
+      window.addEventListener('DOMContentLoaded', init);
+
+      function init() {
+        // サイズを指定
+        const width = 800
+        const height = 600;
+
+        // レンダラーを作成
+        var renderer = new THREE.WebGLRenderer();
+        document.body.appendChild(renderer.domElement);
+        renderer.setSize(width, height);
+        // 背景の色を設定
+        renderer.setClearColor(0xffffdd);
+
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+        // カメラの初期座標を設定
+        camera.position.set(0, 0, 5);
+
+        // カメラコントローラーを作成
+        const controls = new THREE.OrbitControls(camera, document.body); 
+        
+        // 平行光源1
+        var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+        directionalLight1.position.set(10, 10, 10);
+        // シーンに追加
+        scene.add(directionalLight1);
+        // 平行光源2
+        var directionalLight2 = new THREE.DirectionalLight(0x888888);
+        directionalLight2.position.set(-10, -10, 10);
+        // シーンに追加
+        scene.add(directionalLight2);
+
+        // helper
+        //const gridHelper = new THREE.GridHelper(2,10); // size, step
+        //scene.add(gridHelper);
+        //const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
+        //scene.add(axisHelper);
+
+        // 木をスプライトで作成
+        var textureLoader = new THREE.TextureLoader();  
+        //var texture = textureLoader.load("img/tree0.png");
+        //const material = new THREE.SpriteMaterial({ map: texture,});
+
+        const images = ['img/tree0.png','img/tree1.png','img/tree2.png','img/tree3.png'];
+
+        // 手前の森を作成
+        for (let i = 0; i < 30; i++) {
+          var random = Math.floor(Math.random()*4);
+          var texture = textureLoader.load(images[random]);
+          const material = new THREE.SpriteMaterial({ map: texture,});
+          const sprite = new THREE.Sprite(material);
+          // ランダムな座標に配置
+          sprite.position.x = 3 * (Math.random() - 0.5);
+          sprite.position.y = 0.3;
+          sprite.position.z = (Math.random() + 0.7);
+          // スケールを調整
+          sprite.scale.set(0.5, 0.5, 0.5);
+
+          scene.add(sprite);
+        }
+
+        for (let i = 0; i < 30; i++) {
+          var random = Math.floor(Math.random()*4);
+          var texture = textureLoader.load(images[random]);
+          const material = new THREE.SpriteMaterial({ map: texture,});
+          const sprite = new THREE.Sprite(material);
+          // ランダムな座標に配置
+          sprite.position.x = 3 * (Math.random() - 0.5);
+          sprite.position.y = 0.3;
+          sprite.position.z = (Math.random() + 1.5);
+          // スケールを調整
+          sprite.scale.set(0.5, 0.5, 0.5);
+
+          scene.add(sprite);
+        }
+
+        //奥の木
+        for (let i = 0; i < 30; i++) {
+          var random = Math.floor(Math.random()*4);
+          var texture = textureLoader.load(images[random]);
+          const material = new THREE.SpriteMaterial({ map: texture,});
+          const sprite = new THREE.Sprite(material);
+          // ランダムな座標に配置
+          sprite.position.x = 3 * (Math.random() - 0.5);
+          sprite.position.y = 0.3;
+          sprite.position.z = (Math.random() - 1);
+          // スケールを調整
+          sprite.scale.set(0.5, 0.5, 0.5);
+
+          scene.add(sprite);
+        }
+
+        for (let i = 0; i < 30; i++) {
+          var random = Math.floor(Math.random()*4);
+          var texture = textureLoader.load(images[random]);
+          const material = new THREE.SpriteMaterial({ map: texture,});
+          const sprite = new THREE.Sprite(material);
+          // ランダムな座標に配置
+          sprite.position.x = 3 * (Math.random() - 0.5);
+          sprite.position.y = 0.3;
+          sprite.position.z = (Math.random() - 1.5);
+          // スケールを調整
+          sprite.scale.set(0.5, 0.5, 0.5);
+
+          scene.add(sprite);
+        }
+
+        //手前側の道
+        var textureLoader2 = new THREE.TextureLoader();  
+        var texture2 = textureLoader2.load("grass.jpg");
+        var mat = new THREE.MeshLambertMaterial();
+        mat.map = texture2;
+        // バンプマップ読み込み
+        var bump = textureLoader.load("grass.jpg");
+        mat.bumpMap = bump;
+        mat.bumpscale = 0.2;
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var road = new THREE.Mesh(geometry, mat);
+        road.position.set(0,0,1.7);
+        road.scale.set(3,0.1,2); 
+        scene.add(road);
+
+        
+        update();
+
+        // 毎フレーム時に実行されるループイベントです
+        function update() {
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(update);
+        }
+      }
+    </script>
+</body>
