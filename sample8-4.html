@@ -47,10 +47,10 @@
         scene.add(directionalLight2);
 
         // helper
-        const gridHelper = new THREE.GridHelper(2,10); // size, step
-        scene.add(gridHelper);
-        const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
-        scene.add(axisHelper);
+        //const gridHelper = new THREE.GridHelper(2,10); // size, step
+        //scene.add(gridHelper);
+        //const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
+        //scene.add(axisHelper);
 
         // 木をスプライトで作成
         var textureLoader = new THREE.TextureLoader();  
@@ -60,7 +60,7 @@
         const images = ['img/tree0.png','img/tree1.png','img/tree2.png','img/tree3.png'];
 
         // 森を作成
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 25; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
           const material = new THREE.SpriteMaterial({ map: texture,});
@@ -75,7 +75,7 @@
           scene.add(sprite);
         }
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 25; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
           const material = new THREE.SpriteMaterial({ map: texture,});
@@ -89,6 +89,16 @@
 
           scene.add(sprite);
         }
+
+        //手前側の道
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshPhongMaterial({ color: 0x006400});
+        var road = new THREE.Mesh(geometry, material);
+        road.castShadow = true; //影ができる
+        road.position.set(0,0,1.5);
+        road.scale.set(3,1,2); 
+        scene.add(road);
+
         
         update();
 
