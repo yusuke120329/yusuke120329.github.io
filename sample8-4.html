@@ -60,13 +60,13 @@
         const images = ['img/tree0.png','img/tree1.png','img/tree2.png','img/tree3.png'];
 
         // 森を作成
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 30; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
           const material = new THREE.SpriteMaterial({ map: texture,});
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
-          sprite.position.x = 2 * (Math.random() - 0.5);
+          sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
           sprite.position.z = (Math.random() + 1);
           // スケールを調整
@@ -75,13 +75,13 @@
           scene.add(sprite);
         }
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 30; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
           const material = new THREE.SpriteMaterial({ map: texture,});
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
-          sprite.position.x = 2 * (Math.random() - 0.5);
+          sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
           sprite.position.z = (Math.random() - 1);
           // スケールを調整
