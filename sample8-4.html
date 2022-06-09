@@ -136,6 +136,15 @@
         road.scale.set(3,0.1,2); 
         scene.add(road);
 
+        var textureLoader3 = new THREE.TextureLoader();  
+        var texture3 = textureLoader3.load("grass.jpg");
+        var mat2 = new THREE.MeshLambertMaterial();
+        mat2.map = texture3;
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var road2 = new THREE.Mesh(geometry, mat2);
+        road2.position.set(0,0,-1.7);
+        road2.scale.set(3,0.1,2); 
+        scene.add(road2);
         
         update();
 
