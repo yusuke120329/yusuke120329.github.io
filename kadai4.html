@@ -5,8 +5,8 @@
     <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
   </head>
 <body>
- <h1>森を作成</h1>
- ループで２０本の気を作った<br>
+ <h1>森と山道を作成</h1>
+ ループで１ブロックにつき３０本のランダムな木を作り、それを４ブロック分作ることで森を２つ作り、その間に道を作成した<br>
  <script>
       // ページの読み込みを待つ
       window.addEventListener('DOMContentLoaded', init);
@@ -21,7 +21,7 @@
         document.body.appendChild(renderer.domElement);
         renderer.setSize(width, height);
         // 背景の色を設定
-        renderer.setClearColor(0xffffdd);
+        renderer.setClearColor(0xEF904C);
 
 
         // シーンを作成
@@ -90,7 +90,7 @@
           scene.add(sprite);
         }
 
-        //奥の木
+        //奥の森
         for (let i = 0; i < 30; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
@@ -99,7 +99,7 @@
           // ランダムな座標に配置
           sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() - 1);
+          sprite.position.z = (Math.random() - 1.3);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
@@ -114,7 +114,7 @@
           // ランダムな座標に配置
           sprite.position.x = 3 * (Math.random() - 0.5);
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() - 1.5);
+          sprite.position.z = (Math.random() - 2);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
@@ -136,6 +136,22 @@
         road.scale.set(3,0.1,2); 
         scene.add(road);
 
+       //奥側の道
+        var road2 = new THREE.Mesh(geometry, mat);
+        road2.position.set(0,0,-1.3);
+        road2.scale.set(3,0.1,2); 
+        scene.add(road2);
+
+        //真ん中の道
+        var textureLoader3 = new THREE.TextureLoader();  
+        var texture3 = textureLoader3.load("grassroad.jpeg");
+        var mat2 = new THREE.MeshLambertMaterial();
+        mat2.map = texture3;
+        var road3 = new THREE.Mesh(geometry, mat2);
+        road3.position.set(0,0,0.2);
+        road3.scale.set(0.97,0.1,3); 
+        road3.rotation.y = 1.57;
+        scene.add(road3);
         
         update();
 
