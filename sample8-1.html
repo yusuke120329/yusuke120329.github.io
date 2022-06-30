@@ -52,30 +52,58 @@
         const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
 
-        const x_size = 800;
-        const y_size = 600;
+  
+        //雨を作成
         const length = 300;
-        const plane_scale = 4;
         const plane = [];
-
-        var textureLoader = new THREE.TextureLoader(); 
-        var texture = textureLoader.load("Raindrops.png");
-        const material2 = new THREE.SpriteMaterial({ map: texture,});
+        const plane2 = [];
+        const plane3 = [];
+        const plane4 = [];
  
         for(let i=0; i<length; i++){
-          //var geometry = new THREE.PlaneGeometry( 0.5, 10 );
-          //var material = new THREE.MeshBasicMaterial({color: 0x0064FF});
-          //plane[i] = new THREE.Mesh( geometry, material );
-
-          plane[i] = new THREE.Sprite(material);
-          plan[i].scale.set(1,2,1);
-          
-          plane[i].position.x = x_size * (Math.random() - 0.5);
-          plane[i].position.y = y_size * (Math.random() - 0.5);
-          plane[i].position.z = x_size * (Math.random() - 0.5);
+          var geometry = new THREE.PlaneGeometry( 0.5, 10 );
+          var material = new THREE.MeshBasicMaterial({color: 0x0064FF});
+          plane[i] = new THREE.Mesh( geometry, material );         
+          plane[i].position.x = width * (Math.random() - 0.5);
+          plane[i].position.y = height * (Math.random() - 0.5);
+          plane[i].position.z = width * (Math.random() - 0.5);
           scene.add( plane[i] );
         }
 
+        for(let i=0; i<length; i++){
+          var geometry = new THREE.PlaneGeometry( 0.5, 10 );
+          var material = new THREE.MeshBasicMaterial({color: 0x0064FF});
+          plane2[i] = new THREE.Mesh( geometry, material );
+          plane2[i].rotation.y = 1.57;         
+          plane2[i].position.x = width * (Math.random() - 0.5);
+          plane2[i].position.y = height * (Math.random() - 0.5);
+          plane2[i].position.z = width * (Math.random() - 0.5);
+          scene.add( plane2[i] );
+        }
+
+        for(let i=0; i<length; i++){
+          var geometry = new THREE.PlaneGeometry( 0.5, 10 );
+          var material = new THREE.MeshBasicMaterial({color: 0x0064FF});
+          plane3[i] = new THREE.Mesh( geometry, material );
+          plane3[i].rotation.y = -1.57;         
+          plane3[i].position.x = width * (Math.random() - 0.5);
+          plane3[i].position.y = height * (Math.random() - 0.5);
+          plane3[i].position.z = width * (Math.random() - 0.5);
+          scene.add( plane3[i] );
+        }
+
+        //道路を作成
+        var geometry = new THREE.PlaneGeometry(15,15,10,10);
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader3.load("road.jpeg");
+        var mat = new THREE.MeshLambertMaterial();
+        mat.map = texture3;
+        var road = new THREE.Mesh(geometry, mat);
+        plane.rotation.set( -Math.PI/2, 0, 0 );
+        road.position.set(0,0,0);
+        //road.scale.set(0.97,0.1,3); 
+        //roa.rotation.y = 1.57;
+        scene.add(road);
 
         // 箱を作成
         var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -107,20 +135,21 @@
           for(let i=0; i<length; i++){
           // 雨を降らす
             plane[i].position.y += 1;
+            plane2[i].position.y += 1;
+            plane3[i].position.y += 1;
             if (plane[i].position.y < height) {
-              plane[i].position.x = x_size * (Math.random() - 0.5);
-              plane[i].position.y = y_size * (Math.random() - 0.5);
+              plane[i].position.y = height * (Math.random() - 0.5);
+            }
+            if (plane2[i].position.y < height) {
+              plane2[i].position.y = height * (Math.random() - 0.5);
+            }
+            if (plane3[i].position.y < height) {
+              plane3[i].position.y = height * (Math.random() - 0.5);
             }
           }
 
 
         }
-
-        //アニメ―ション
-        function start() {
-          renderer.render(scene, camera);
-        }
-        start();
       }
     </script>
 </body>
