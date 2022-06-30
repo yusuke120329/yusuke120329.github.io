@@ -95,11 +95,11 @@
         //道路を作成
         var geometry = new THREE.PlaneGeometry(15,15,10,10);
         var textureLoader = new THREE.TextureLoader();  
-        var texture = textureLoader3.load("road.jpeg");
+        var texture = textureLoader.load("road.jpeg");
         var mat = new THREE.MeshLambertMaterial();
-        mat.map = texture3;
+        mat.map = texture;
         var road = new THREE.Mesh(geometry, mat);
-        plane.rotation.set( -Math.PI/2, 0, 0 );
+        road.rotation.set( -Math.PI/2, 0, 0 );
         road.position.set(0,0,0);
         //road.scale.set(0.97,0.1,3); 
         //roa.rotation.y = 1.57;
