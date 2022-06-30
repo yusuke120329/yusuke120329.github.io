@@ -95,7 +95,7 @@
         //道路を作成
         var geometry = new THREE.PlaneGeometry(15,15,10,10);
         var textureLoader = new THREE.TextureLoader();  
-        var texture = textureLoader.load("road.jpeg");
+        var texture = textureLoader.load("road.png");
         var mat = new THREE.MeshLambertMaterial();
         mat.map = texture;
         var road = new THREE.Mesh(geometry, mat);
