@@ -93,7 +93,7 @@
         }
 
         //道路を作成
-        var geometry = new THREE.PlaneGeometry(3,15,10,10);
+        var geometry = new THREE.PlaneGeometry(3,10,10,10);
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load("road.png");
         var mat = new THREE.MeshLambertMaterial();
@@ -104,15 +104,20 @@
         scene.add(road);
 
          //道路を作成
-         var geometry2 = new THREE.PlaneGeometry(2.5,15,10,10);
+         var geometry2 = new THREE.PlaneGeometry(2.5,5,10,10);
          var textureLoader2 = new THREE.TextureLoader();  
          var texture2 = textureLoader2.load("road2.jpg");
          var mat2 = new THREE.MeshLambertMaterial();
          mat2.map = texture2;
          var road2 = new THREE.Mesh(geometry2, mat2);
          road2.rotation.set( -Math.PI/2, 0, 0 );
-         road2.position.set(-2.7,0,0);        
+         road2.position.set(-2.7,0,2.5);        
          scene.add(road2);
+
+         var road3 = new THREE.Mesh(geometry2, mat2);
+         road3.rotation.set( -Math.PI/2, 0, 0 );
+         road3.position.set(-2.7,0,-2.5);        
+         scene.add(road3);
 
         // 箱を作成
         var geometry = new THREE.BoxGeometry(1, 1, 1);
