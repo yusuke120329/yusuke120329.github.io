@@ -167,11 +167,241 @@
         const mat3 = new THREE.SpriteMaterial({ map: texture3,});
 
         const sprite0 = new THREE.Sprite(mat3);
-        sprite0.position.x = 0;
-        sprite0.position.y = 50;
-        sprite0.position.z = 0;
-        sprite0.scale.set(100,100,100);
-        scene.add(sprite0)
+        sprite0.position.x = -0.3;
+        sprite0.position.y = 1.8;
+        sprite0.position.z = -4.3;
+        sprite0.scale.set(1.2,0.8,1);
+        scene.add(sprite0);
+
+        //タイヤの上の車体の箱１
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshPhongMaterial({ color: 0x282828, specular: 0x666666, shininess: 100});
+        var box1 = new THREE.Mesh(geometry, material);
+        box1.position.set(0,1.5,0);
+        box1.scale.set(7,0.3,3.5); 
+        scene.add(box1);
+        
+        //タイヤの前の車体の箱２
+        var box2 = new THREE.Mesh(geometry, material);
+        box2.position.set(3,1.2,0);
+        box2.scale.set(0.8,0.5,3.5); 
+        scene.add(box2);
+        
+        //タイヤの前の車体の箱3
+        var box3 = new THREE.Mesh(geometry, material);
+        box3.position.set(2.9,1,0);
+        box3.scale.set(0.6,0.5,3.5); 
+        scene.add(box3);
+
+        //タイヤの後ろの車体の箱4
+        var box4 = new THREE.Mesh(geometry, material);
+        box4.position.set(-3,1.2,0);
+        box4.scale.set(1,0.5,3.5); 
+        scene.add(box4);
+
+        //タイヤの後ろの下の車体の箱5
+        var box5 = new THREE.Mesh(geometry, material);
+        box5.position.set(-2.8,1,0);
+        box5.scale.set(0.6,0.5,3.5); 
+        scene.add(box5);
+
+        //タイヤに挟まっている横の車体の箱6
+        var box6 = new THREE.Mesh(geometry, material);
+        box6.position.set(0,1.2,0);
+        box6.scale.set(2,0.9,3.5); 
+        scene.add(box6);
+
+        //タイヤに挟まっている縦の車体の箱7
+        var box7 = new THREE.Mesh(geometry, material);
+        box7.position.set(0,1.2,0);
+        box7.scale.set(5.3,0.9,1.5); 
+        scene.add(box7);
+
+        //車体の箱8
+        var material2 = new THREE.MeshPhongMaterial({ color: 0xFFFFFF});
+        var box8 = new THREE.Mesh(geometry, material2);
+        box8.position.set(-1.2,1.9,0);
+        box8.scale.set(4.45,0.5,3.5); 
+        scene.add(box8);
+
+        //車体の箱9
+        var box9 = new THREE.Mesh(geometry, material2);
+        box9.position.set(2,1.75,0);
+        box9.scale.set(2.8,0.5,3.49);
+        box9.rotation.z = -0.12;
+        scene.add(box9);
+
+        //車体の箱10
+        var box10 = new THREE.Mesh(geometry, material2);
+        box10.position.set(-1,2.5,0);
+        box10.scale.set(2.5,0.7,3.5); 
+        scene.add(box10);
+
+        //車体の箱11
+        var box11 = new THREE.Mesh(geometry, material2);
+        box11.position.set(0.44,2.26,0);
+        box11.scale.set(1,0.6,3.5);
+        box11.rotation.z = -0.72;
+        scene.add(box11);
+
+        //車体の箱12
+        var box12 = new THREE.Mesh(geometry, material2);
+        box12.position.set(-2.69,2.24,0);
+        box12.scale.set(1.35,0.6,3.5);
+        box12.rotation.z = 0.52;
+        scene.add(box12);
+
+        //ナンバープレートの箱１３
+        var material3 = new THREE.MeshPhongMaterial({ color: 0xFFDC46});
+        var box13 = new THREE.Mesh(geometry, material3);
+        box13.position.set(3.45,1,0);
+        box13.scale.set(0.1,0.5,0.8); 
+        scene.add(box13);
+        
+        //後ろのランプの箱１4
+        var material4 = new THREE.MeshPhongMaterial({ color: 0xCD1039, specular: 0x000011, shininess: 120});
+        var box14 = new THREE.Mesh(geometry, material4);
+        box14.position.set(-3.45,1.85,1.26);
+        box14.scale.set(0.05,0.5,1); 
+        scene.add(box14);
+
+        //後ろのランプの箱１5
+        var box15 = new THREE.Mesh(geometry, material4);
+        box15.position.set(-3.45,1.85,-1.26);
+        box15.scale.set(0.05,0.5,1); 
+        scene.add(box15);
+
+        //  前の窓１
+        var WindowGeometry = new THREE.PlaneGeometry(0.93,3.2,10,10,); //縦、横、分割数、分割数
+        var WindowMaterial = new THREE.MeshPhongMaterial({color: 0x87F5F5, specular: 0x000001, shininess: 150});
+        var Window = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window.rotation.set( -Math.PI/2, 0.76, 0 );
+        Window.position.set(0.64,2.52,0);
+        scene.add(Window); 
+
+        //  後ろの窓２
+        var WindowGeometry = new THREE.PlaneGeometry(0.98,3.2,10,10,); //縦、横、分割数、分割数
+        var Window2 = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window2.rotation.set( -Math.PI/2, -0.52, 0 );
+        Window2.position.set(-2.8,2.54,0);
+        scene.add(Window2);
+
+        //  右前の窓３  
+        var WindowGeometry = new THREE.PlaneGeometry(0.9,0.7,10,10,); //縦、横、分割数、分割数
+        var Window3 = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window3.position.set(-0.3,2.4,1.76);
+        scene.add(Window3);
+
+        //  右後ろの窓４  
+        var WindowGeometry = new THREE.PlaneGeometry(1.2,0.7,10,10,); //縦、横、分割数、分割数
+        var Window4 = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window4.position.set(-1.7,2.4,1.76);
+        scene.add(Window4);
+
+        //  左前の窓５  
+        var Window5 = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window5.position.set(-0.3,2.4,-1.76);
+        Window5.rotation.y = 9.45;
+        scene.add(Window5);
+
+        //  左後ろの窓６
+        var Window6 = new THREE.Mesh(WindowGeometry,WindowMaterial);
+        Window6.position.set(-1.7,2.4,-1.76);
+        Window6.rotation.y = 9.45;
+        scene.add(Window6);
+
+        //タイヤ1
+        var Tire1Geometry = new THREE.TorusGeometry(0.5, 0.2, 16, 100);
+        var Tire1Material = new THREE.MeshLambertMaterial({color: 0x282828});
+        var Tire1 = new THREE.Mesh(Tire1Geometry, Tire1Material);
+        Tire1.position.set(1.8,0.7,1.3);
+        Tire1.scale.z = 2;
+        scene.add(Tire1);
+
+        //タイヤ1のホイール
+        var Wheel1Geometry = new THREE.CylinderGeometry( 0.3, 0.3, 1, 32 );
+        var Wheel1Material = new THREE.MeshPhongMaterial( {color: 0xb4b4b4 , specular: 0x999999, shininess: 80} );
+        var Wheel1 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
+        Wheel1.position.set( 1.8, 0.7, 1.3 );
+        Wheel1.rotation.x = 1.5;
+        Wheel1.scale.y = 0.5;
+        scene.add( Wheel1 );
+
+        //タイヤ2
+        var Tire2 = new THREE.Mesh(Tire1Geometry, Tire1Material);
+        Tire2.position.set(-1.8,0.7,1.3);
+        Tire2.scale.z = 2;
+        scene.add(Tire2);
+
+        //タイヤ2のホイール
+        var Wheel2 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
+        Wheel2.position.set( -1.8, 0.7, 1.3 );
+        Wheel2.rotation.x = 1.5;
+        Wheel2.scale.y = 0.5;
+        scene.add( Wheel2 );
+
+        //タイヤ3
+        var Tire3 = new THREE.Mesh(Tire1Geometry, Tire1Material);
+        Tire3.position.set(1.8,0.7,-1.3);
+        Tire3.scale.z = 2;
+        scene.add(Tire3);
+
+        //タイヤ3のホイール
+        var Wheel3 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
+        Wheel3.position.set( 1.8, 0.7, -1.3 );
+        Wheel3.rotation.x = 1.5;
+        Wheel3.scale.y = 0.5;
+        scene.add( Wheel3 );
+
+        //タイヤ4
+        var Tire4 = new THREE.Mesh(Tire1Geometry, Tire1Material);
+        Tire4.position.set(-1.8,0.7,-1.3);
+        Tire4.scale.z = 2;
+        scene.add(Tire4);
+
+        //タイヤ4のホイール
+        var Wheel4 = new THREE.Mesh( Wheel1Geometry, Wheel1Material );
+        Wheel4.position.set( -1.8, 0.7, -1.3 );
+        Wheel4.rotation.x = 1.5;
+        Wheel4.scale.y = 0.5;
+        scene.add( Wheel4 );
+
+        //車のオブジェクト
+        const car = new THREE.Group();
+        car.add(box1);
+        car.add(box2);
+        car.add(box3);
+        car.add(box4);
+        car.add(box5);
+        car.add(box6);
+        car.add(box7);
+        car.add(box8);
+        car.add(box9);
+        car.add(box10);
+        car.add(box11);
+        car.add(box12);
+        car.add(box13);
+        car.add(box14);
+        car.add(box15);
+        car.add(Window);
+        car.add(Window2);
+        car.add(Window3);
+        car.add(Window4);
+        car.add(Window5);
+        car.add(Window6);
+        car.add(Tire1);
+        car.add(Tire2);
+        car.add(Tire3);
+        car.add(Tire4);
+        car.add( Wheel1);
+        car.add( Wheel2);
+        car.add( Wheel3);
+        car.add( Wheel4);
+        car.position.set(-0.5,0,3);//車グループの原点の位置
+        car.scale.set(0.15,0.15,0.15);
+        car.rotation.y = 1.57;
+        scene.add(car);
+       
 
 
         update();
@@ -181,6 +411,12 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
+
+          if(car.position.z >= -3.5){
+            car.position.z -= 0.01;
+          }
+
+          
           
           for(let i=0; i<length; i++){
           // 雨を降らす
