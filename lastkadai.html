@@ -130,24 +130,6 @@
          road5.position.set(2.7,0,-2.5);        
          scene.add(road5);
 
-        // 箱を作成
-        var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshPhongMaterial({ color: 0x000001 });
-        var box = new THREE.Mesh(geometry, material);
-        box.position.set(-2,1,0); //位置を指定
-        box.scale.set(1,1.5,3.5);
-        scene.add(box);   // シーンに追加
-
-        var box2 = new THREE.Mesh(geometry, material);
-        box2.position.set(-2,3.5,0); //位置を指定
-        box2.scale.set(1,0.5,3.5);
-        scene.add(box2);   // シーンに追加
-
-        var box3 = new THREE.Mesh(geometry, material);
-        box3.position.set(-1.55,2,0); //位置を指定
-        box3.scale.set(0.1,0.5,3.5);
-        scene.add(box3);   // シーンに追加
-
         //信号機の柱
         var cylinderGeometry = new THREE.CylinderGeometry( 0.1, 0.1, 2.3, 32 );
         var cylinderMaterial = new THREE.MeshToonMaterial( {color: 0xa0a0a0} );
@@ -184,6 +166,23 @@
         sprite1.position.z = -3.5;
         sprite1.scale.set(1,1,1);
         scene.add(sprite1);
+
+        //ビルを作成
+        var Billmaterials = [
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img1.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img2.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img3.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img4.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img5.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img6.png")}),
+        ];
+ 
+        var Billmaterial = new THREE.MeshFaceMaterial(Billmaterials); // マテリアルをセット
+        
+        var Billgeometry = new THREE.BoxGeometry(1, 1, 1);
+        var Billbox = new THREE.Mesh(Billgeometry, Billmaterial);
+        Billbox.position.set(-4,1,0);
+        scene.add(Billbox);
 
         //タイヤの上の車体の箱１
         var geometry = new THREE.BoxGeometry(1, 1, 1);
