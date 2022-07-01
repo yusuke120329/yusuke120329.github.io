@@ -47,8 +47,8 @@
         scene.add(directionalLight2);
 
         // helper
-        const gridHelper = new THREE.GridHelper(2,10); // size, step
-        scene.add(gridHelper);
+        //const gridHelper = new THREE.GridHelper(2,10); // size, step
+        //scene.add(gridHelper);
         const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
 
@@ -169,17 +169,17 @@
 
         //ビルを作成
         var Billmaterials = [
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img1.png")}),
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img2.png")}),
+        new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img_bsl.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img_bsr.png")}),
           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img3.png")}),
           new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img4.png")}),
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img5.png")}),
-          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img6.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img_bf.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img_bb.png")}),
         ];
  
         var Billmaterial = new THREE.MeshFaceMaterial(Billmaterials); // マテリアルをセット
-        
-        var Billgeometry = new THREE.BoxGeometry(1, 1, 1);
+
+        var Billgeometry = new THREE.BoxGeometry(1, 2, 0.5);
         var Billbox = new THREE.Mesh(Billgeometry, Billmaterial);
         Billbox.position.set(-4,1,0);
         scene.add(Billbox);
