@@ -155,6 +155,18 @@
         cylinder.position.set(-1.3,1.15,-4.5);
         scene.add( cylinder );
 
+        // 信号をスプライトで作成
+        var textureLoader3 = new THREE.TextureLoader();  
+        var texture3 = textureLoader3.load("light.png");
+        const mat3 = new THREE.SpriteMaterial({ map: texture3,});
+
+        const sprite0 = new THREE.Sprite(mat3);
+        sprite0.position.x = 0;
+        sprite0.position.y = 50;
+        sprite0.position.z = 0;
+        sprite0.scale.set(100,100,100);
+        scene.add(sprite0)
+
 
 
         update();
