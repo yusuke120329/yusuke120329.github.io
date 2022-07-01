@@ -173,6 +173,18 @@
         sprite0.scale.set(1.2,0.8,1);
         scene.add(sprite0);
 
+        // 木1をスプライトで作成 
+        var textureLoader4 = new THREE.TextureLoader();
+        var texture4 = textureLoader4.load("img/tree1.png");
+        const mat4 = new THREE.SpriteMaterial({ map: texture4,});
+
+        const sprite1 = new THREE.Sprite(mat4);
+        sprite1.position.x = 0;
+        sprite1.position.y = 0;
+        sprite1.position.z = 0;
+        sprite1.scale.set(100,100,100);
+        scene.add(sprite1);
+
         //タイヤの上の車体の箱１
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var material = new THREE.MeshPhongMaterial({ color: 0x282828, specular: 0x666666, shininess: 100});
