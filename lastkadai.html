@@ -182,6 +182,7 @@
         var Billgeometry = new THREE.BoxGeometry(1, 2, 0.5);
         var Billbox = new THREE.Mesh(Billgeometry, Billmaterial);
         Billbox.position.set(-4,1,0);
+        Billbox.rotation.y = 1.57;
         scene.add(Billbox);
 
         //タイヤの上の車体の箱１
