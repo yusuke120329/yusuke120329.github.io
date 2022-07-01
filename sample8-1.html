@@ -103,7 +103,7 @@
         road.position.set(0,0,0);
         scene.add(road);
 
-         //道路を作成
+         //左側の道路を作成
          var geometry2 = new THREE.PlaneGeometry(2.5,5,10,10);
          var textureLoader2 = new THREE.TextureLoader();  
          var texture2 = textureLoader2.load("road2.jpg");
@@ -118,6 +118,17 @@
          road3.rotation.set( -Math.PI/2, 0, 0 );
          road3.position.set(-2.7,0,-2.5);        
          scene.add(road3);
+
+         //右側の道路を作成
+         var road4 = new THREE.Mesh(geometry2, mat2);
+         road4.rotation.set( -Math.PI/2, 0, 0 );
+         road4.position.set(2.7,0,2.5);        
+         scene.add(road4);
+
+         var road5 = new THREE.Mesh(geometry2, mat2);
+         road5.rotation.set( -Math.PI/2, 0, 0 );
+         road5.position.set(2.7,0,-2.5);        
+         scene.add(road5);
 
         // 箱を作成
         var geometry = new THREE.BoxGeometry(1, 1, 1);
