@@ -629,6 +629,9 @@
         car2.rotation.y = 1.57;
         scene.add(car2);
 
+        let x = 0.012;
+        let y = 0.01;
+
 
         update();
 
@@ -638,13 +641,18 @@
           renderer.render(scene, camera);
           requestAnimationFrame(update);
 
+         
+
           if(car.position.z >= -3.5){
-            car.position.z -= 0.01;
+            car.position.z -= x;
           }
 
           if(car2.position.z >= -2){
-            car2.position.z -= 0.01;
+            car2.position.z -= y;
           }
+
+          x *= 0.9985;
+          y *= 0.9985;
 
           
           
