@@ -331,10 +331,29 @@
         scene.add(Billbox3);
 
         //ビル4を作成
-        var Billbox5 = new THREE.Mesh(Billgeometry, Billmaterial);
-        Billbox5.position.set(2.7,2,-3);
+        var Billbox4 = new THREE.Mesh(Billgeometry, Billmaterial);
+        Billbox4.position.set(2.7,2,-3);
+        Billbox4.rotation.y = 1.57;
+        Billbox4.scale.set(2,2,2);
+        scene.add(Billbox4);
+
+         //ビル5を作成
+         var Billmaterials4 = [
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billl2.jpg")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billl2.jpg")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billup.jpg")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billup.jpg")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billl.jpg")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("billl.jpg")}),
+        ];
+ 
+        var Billmaterial4 = new THREE.MeshFaceMaterial(Billmaterials4); // マテリアルをセット
+
+        var Billgeometry4 = new THREE.BoxGeometry(1, 2, 0.5);
+        var Billbox5 = new THREE.Mesh(Billgeometry4, Billmaterial4);
+        Billbox5.position.set(-2.5,2,0);
         Billbox5.rotation.y = 1.57;
-        Billbox5.scale.set(2,2,2);
+        Billbox5.scale.set(2,1,2);
         scene.add(Billbox5);
 
         //タイヤの上の車体の箱１
