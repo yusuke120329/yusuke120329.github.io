@@ -237,16 +237,16 @@
         }
 
         const images = ['img/tree0.png','img/tree1.png','img/tree2.png','img/tree3.png'];
-        
-        for (let i = 0; i < 20; i++) {
+
+        for (let i = 0; i < 40; i++) {
           var random = Math.floor(Math.random()*4);
           var texture = textureLoader.load(images[random]);
           const material = new THREE.SpriteMaterial({ map: texture,});
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
-          sprite.position.x = 3 * (Math.random() - 0.5);
+          sprite.position.x = 10 * (Math.random()) % 3 + 2; 
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() + 0.7);
+          sprite.position.z = (Math.random() + 2);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
