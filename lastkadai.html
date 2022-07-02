@@ -244,9 +244,9 @@
           const material = new THREE.SpriteMaterial({ map: texture,});
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
-          sprite.position.x = 10 * (Math.random()) % 3 + 2; 
+          sprite.position.x = 10 * (Math.random()) % 3 + 1; 
           sprite.position.y = 0.3;
-          sprite.position.z = (Math.random() + 2);
+          sprite.position.z = 10 * (Math.random()) % 3 + 2;
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
 
