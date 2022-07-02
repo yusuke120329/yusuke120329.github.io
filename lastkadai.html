@@ -29,7 +29,7 @@
         const camera = new THREE.PerspectiveCamera(45, width / height);
         
         // カメラの初期座標を設定
-        camera.position.set(0, 1, 10);
+        camera.position.set(0, 1.5, 8);
         
 
         // カメラコントローラーを作成
@@ -155,7 +155,23 @@
         sprite0.scale.set(1.2,0.8,1);
         scene.add(sprite0);
 
-        // 木1をスプライトで作成 
+        // 木をループでスプライトで作成 
+        let z = 3.5 
+        for(let i = 0; i<5; i++){
+          var textureLoader4 = new THREE.TextureLoader();
+          var texture4 = textureLoader4.load("img/tree1.png");
+          const mat4 = new THREE.SpriteMaterial({ map: texture4,});
+
+          const sprite1 = new THREE.Sprite(mat4);
+          sprite1.position.x = -1.5;
+          sprite1.position.y = 0.5;
+          sprite1.position.z = x;
+          sprite1.scale.set(1,1,1);
+          scene.add(sprite1);
+          x -= 0.5
+        }
+
+         // 木1をスプライトで作成 
         var textureLoader4 = new THREE.TextureLoader();
         var texture4 = textureLoader4.load("img/tree1.png");
         const mat4 = new THREE.SpriteMaterial({ map: texture4,});
@@ -166,7 +182,8 @@
         sprite1.position.z = -3.5;
         sprite1.scale.set(1,1,1);
         scene.add(sprite1);
-
+        x -= 0.5
+  
         //ビルを作成
         var Billmaterials = [
         new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/img_bsl.png")}),
