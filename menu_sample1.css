@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+ul.ddmenu {
+   margin: 0px;               
+   padding: 0px 0px 0px 15px; 
+   background-color: #cc0000; 
+}
+
+ul.ddmenu li {
+   width: 125px;           
+   display: inline-block;  
+   list-style-type: none;  
+   position: relative;     
+}
+
+ul.ddmenu a {
+   background-color: #cc0000; /* メニュー項目の背景色(濃い赤色) */
+   color: white;              /* メニュー項目の文字色(白色) */
+   line-height: 40px;         /* メニュー項目のリンクの高さ(40px) */
+   text-align: center;        /* メインメニューの文字列の配置(中央寄せ) */
+   text-decoration: none;     /* メニュー項目の装飾(下線を消す) */
+   font-weight: bold;         /* 太字にする */
+   display: block;            /* ★4:項目内全域をリンク可能にする */
+}
+
+ul.ddmenu ul {
+   display: none;       /* ★1:標準では非表示にする */
+   margin: 0px;         /* ★2:サブメニュー外側の余白(ゼロ) */
+   padding: 0px;        /* ★3:サブメニュー内側の余白(ゼロ) */
+   position: absolute;  /* ★4:絶対配置にする */
+}
+
+ul.ddmenu li:hover ul {
+   display: block;      /* ★5:マウスポインタが載っている項目の内部にあるリストを表示する */
+}
